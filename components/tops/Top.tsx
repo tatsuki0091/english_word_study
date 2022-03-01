@@ -9,17 +9,26 @@ import {
   Result,
   Definition,
   DefinitionHeader,
+  SearchButton,
 } from "../../styles/topStyles";
-import { Word } from "../../types/Types";
+import { RANDOM_INFO } from "../../types/Types";
+import { randomWord } from "../../pages/api/word";
 
-const Top = (wordInfo: Word) => {
-  console.log(wordInfo);
+const Top = (props: RANDOM_INFO) => {
+  const fetchRandomWord = async () => {
+    const newWord = await randomWord();
+    props.setWordInfo(newWord);
+  };
+
   return (
     <>
+      <SearchButton onClick={fetchRandomWord}>Random</SearchButton>
       <Card>
         <div className="back">
           <WordContent>
-            <Result>{wordInfo.word}</Result>
+            <Definition>
+              <Result>{props.wordInfo.word}</Result>
+            </Definition>
           </WordContent>
         </div>
         <div className="front">
@@ -27,9 +36,16 @@ const Top = (wordInfo: Word) => {
             <Definition>
               <DefinitionHeader>Definitions</DefinitionHeader>
               <Ul>
-                {wordInfo.results.map(
-                  (result, index) =>
-                    index < 4 && <Li key={index}>{result.definition}.</Li>
+                {props.wordInfo.results ? (
+                  props.wordInfo.results.map(
+                    (result, index) =>
+                      index < 4 && <Li key={index}>{result.definition}.</Li>
+                  )
+                ) : (
+                  <p>
+                    This word is a proper noun or a non-existent word. Please
+                    type another word
+                  </p>
                 )}
               </Ul>
             </Definition>

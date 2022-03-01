@@ -20,3 +20,13 @@ export interface Word {
   };
   frequency: Number;
 }
+export interface KEYWORD_INFO {
+  keyword: string;
+  setKeyword: React.Dispatch<React.SetStateAction<string>>;
+  setWordInfo: React.Dispatch<React.SetStateAction<Word>>;
+}
+
+export interface RANDOM_INFO {
+  wordInfo: Word;
+  setWordInfo: React.Dispatch<React.SetStateAction<Word>>;
+}
