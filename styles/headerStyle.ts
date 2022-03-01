@@ -36,7 +36,7 @@ export const Text = styled.input.attrs({ type: "text" })`
   padding: 1% 2%;
 `;
 
-export const Button = styled.input.attrs({ type: "button" })`
+export const Button = styled.input.attrs({ type: "submit" })`
   display: inline-block;
   background: linear-gradient(to right, #ff41ff, #ff4b2b);
   color: white;

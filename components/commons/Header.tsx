@@ -13,7 +13,7 @@ const Header = (props: KEYWORD_INFO) => {
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     props.setKeyword(event.target.value);
   };
-  const submit = async (event: ChangeEvent<HTMLInputElement>) => {
+  const submit = async () => {
     // event.preventDefault();
     const word = await searchWord(props.keyword);
     props.setWordInfo(word);
